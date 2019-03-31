@@ -147,7 +147,7 @@ CKFinder.addPlugin( 'imageresize', {
 
 			if ( imageDimension.width && imageDimension.height )
 			{
-				if ( value == 'check' )	// Check image ratio and original image ratio.
+				if ( value == 'check' )	// Check images ratio and original images ratio.
 				{
 					var width = dialog.getValueOf( 'tab1', 'width' ),
 						height = dialog.getValueOf( 'tab1', 'height' ),
@@ -391,7 +391,7 @@ CKFinder.addPlugin( 'imageresize', {
 												'{' +
 													'float: right;' +
 													'background-position: 0 -32px;' +
-													'background-image: url("' + CKFinder.getPluginPath( 'imageresize' ) + 'images/mini.gif");' +
+													'background-images: url("' + CKFinder.getPluginPath( 'imageresize' ) + 'images/mini.gif");' +
 													'width: 16px;' +
 													'height: 16px;' +
 													'background-repeat: no-repeat;' +
@@ -404,7 +404,7 @@ CKFinder.addPlugin( 'imageresize', {
 												'{' +
 													'float: left;' +
 													'background-position: 0 0;' +
-													'background-image: url("' + CKFinder.getPluginPath( 'imageresize' ) + 'images/mini.gif");' +
+													'background-images: url("' + CKFinder.getPluginPath( 'imageresize' ) + 'images/mini.gif");' +
 													'width: 16px;' +
 													'height: 16px;' +
 													'background-repeat: no-repeat;' +
@@ -415,7 +415,7 @@ CKFinder.addPlugin( 'imageresize', {
 												'a.ckf_btn_unlocked' +
 												'{' +
 													'background-position: 0 -16px;' +
-													'background-image: url("' + CKFinder.getPluginPath( 'imageresize' ) + '/images/mini.gif");' +
+													'background-images: url("' + CKFinder.getPluginPath( 'imageresize' ) + '/images/mini.gif");' +
 												'}' +
 
 												'.ckf_btn_over' +

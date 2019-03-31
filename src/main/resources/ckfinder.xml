@@ -22,7 +22,7 @@
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
 	<!--
-	Set the maximum size of uploaded images. If an uploaded image is larger, it
+	Set the maximum size of uploaded images. If an uploaded images is larger, it
 	gets scaled down proportionally. Set to 0 to disable this feature.
 	-->
 	<imgWidth>1600</imgWidth>
@@ -144,8 +144,8 @@
 	-->
 	<checkSizeAfterScaling>true</checkSizeAfterScaling>
 	<!--
-	Perform additional checks for image files
-	if set to true, validate image size
+	Perform additional checks for images files
+	if set to true, validate images size
 	-->
 	<secureImageUploads>true</secureImageUploads>
 	<!--
@@ -199,7 +199,7 @@
 			<class>com.ckfinder.connector.plugins.FileEditor</class>
 			<params></params>
 		</plugin>
-		<!-- Before enabling the watermark plugin make sure to specify path to source image -->
+		<!-- Before enabling the watermark plugin make sure to specify path to source images -->
 		<!-- The "internal" flag informs CKFinder that watermark is a pure server side plugin -->
 		<!--
 		<plugin>

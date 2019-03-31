@@ -253,8 +253,8 @@ CKFinder.lang['fr'] =
 	Imageresize :
 	{
 		dialogTitle		: 'Redimensionner %s',
-		sizeTooBig		: 'Impossible de modifier la hauteur ou la largeur de cette image pour une valeur plus grande que l\'original (%size).',
-		resizeSuccess	: 'L\'image a été redimensionnée avec succès.',
+		sizeTooBig		: 'Impossible de modifier la hauteur ou la largeur de cette images pour une valeur plus grande que l\'original (%size).',
+		resizeSuccess	: 'L\'images a été redimensionnée avec succès.',
 		thumbnailNew	: 'Créer une nouvelle vignette',
 		thumbnailSmall	: 'Petit (%s)',
 		thumbnailMedium	: 'Moyen (%s)',
@@ -265,9 +265,9 @@ CKFinder.lang['fr'] =
 		invalidHeight	: 'Hauteur invalide.',
 		invalidWidth	: 'Largeur invalide.',
 		invalidName		: 'Nom de fichier incorrect.',
-		newImage		: 'Créer une nouvelle image',
+		newImage		: 'Créer une nouvelle images',
 		noExtensionChange : 'L\'extension du fichier ne peut pas être changé.',
-		imageSmall		: 'L\'image est trop petit',
+		imageSmall		: 'L\'images est trop petit',
 		contextMenuName	: 'Redimensionner',
 		lockRatio		: 'Conserver les proportions',
 		resetSize		: 'Taille d\'origine'

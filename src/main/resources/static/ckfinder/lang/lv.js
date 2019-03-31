@@ -253,7 +253,7 @@ CKFinder.lang['lv'] =
 	Imageresize :
 	{
 		dialogTitle		: 'Resize %s', // MISSING
-		sizeTooBig		: 'Cannot set image height or width to a value bigger than the original size (%size).', // MISSING
+		sizeTooBig		: 'Cannot set images height or width to a value bigger than the original size (%size).', // MISSING
 		resizeSuccess	: 'Image resized successfully.', // MISSING
 		thumbnailNew	: 'Create a new thumbnail', // MISSING
 		thumbnailSmall	: 'Small (%s)', // MISSING
@@ -265,9 +265,9 @@ CKFinder.lang['lv'] =
 		invalidHeight	: 'Invalid height.', // MISSING
 		invalidWidth	: 'Invalid width.', // MISSING
 		invalidName		: 'Invalid file name.', // MISSING
-		newImage		: 'Create a new image', // MISSING
+		newImage		: 'Create a new images', // MISSING
 		noExtensionChange : 'File extension cannot be changed.', // MISSING
-		imageSmall		: 'Source image is too small.', // MISSING
+		imageSmall		: 'Source images is too small.', // MISSING
 		contextMenuName	: 'Resize', // MISSING
 		lockRatio		: 'Nemainīga Augstuma/Platuma attiecība',
 		resetSize		: 'Atjaunot sākotnējo izmēru'

@@ -253,7 +253,7 @@ CKFinder.lang['en'] =
 	Imageresize :
 	{
 		dialogTitle		: 'Resize %s',
-		sizeTooBig		: 'Cannot set image height or width to a value bigger than the original size (%size).',
+		sizeTooBig		: 'Cannot set images height or width to a value bigger than the original size (%size).',
 		resizeSuccess	: 'Image resized successfully.',
 		thumbnailNew	: 'Create a new thumbnail',
 		thumbnailSmall	: 'Small (%s)',
@@ -265,9 +265,9 @@ CKFinder.lang['en'] =
 		invalidHeight	: 'Invalid height.',
 		invalidWidth	: 'Invalid width.',
 		invalidName		: 'Invalid file name.',
-		newImage		: 'Create a new image',
+		newImage		: 'Create a new images',
 		noExtensionChange : 'File extension cannot be changed.',
-		imageSmall		: 'Source image is too small.',
+		imageSmall		: 'Source images is too small.',
 		contextMenuName	: 'Resize',
 		lockRatio		: 'Lock ratio',
 		resetSize		: 'Reset size'
