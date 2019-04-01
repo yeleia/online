@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="${request.contextPath}/static/jquery-confirm.min.css">
     <link rel="stylesheet" href="${request.contextPath}/static/css/global.css">
     <link rel="stylesheet" href="${request.contextPath}/static/css/index.css">
+    <style>
+        #mystyle{
+            margin-left: 25%;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,21 +29,16 @@
         <hr style="height: 2px;box-shadow: 1px 1px 5px #888888;background-color: #032A33; width: 90%">
     </div>
     <ul class="left-list">
-        <li class="left-active"><a href="javascript:void(0);"><img src="../../images/icon/run.png" class="sports-icon">校运会</a>
+        <li class="left-active"><a id="mystyle" href="javascript:void(0);">管理员管理</a>
         </li>
-        <li><a href="javascript:void(0);"><img src="../../images/icon/shoes.png" class="sports-icon">预赛—单项</a></li>
-        <li><a href="javascript:void(0);"><img src="../../images/icon/shoes.png" class="sports-icon">预赛—团体项</a></li>
-        <li><a href="javascript:void(0);"><img src="../../images/icon/sports.png" class="sports-icon">决赛—单项</a></li>
-        <li><a href="javascript:void(0);"><img src="../../images/icon/sports.png" class="sports-icon">二级运动员</a></li>
-        <li><a href="javascript:void(0);"><img src="../../images/icon/sports.png" class="sports-icon">校记录</a></li>
-        <li><a href="javascript:void(0);"><img src="../../images/icon/sports.png" class="sports-icon">弃权记录</a></li>
-        <li><a href="javascript:void(0);"><img src="../../images/icon/playground.png" class="sports-icon">加分规则</a></li>
+        <li><a id="mystyle" href="javascript:void(0);">团队管理</a></li>
+        <li><a id="mystyle" href="javascript:void(0);">用户管理</a></li>
         <hr>
-        <li><a href=""><img src="../../images/icon/gymnastics.png" class="sports-icon">微赛事</a></li>
-        <li><a href=""><img src="../../images/icon/gymnastics.png" class="sports-icon">微赛事管理</a></li>
-        <li><a href=""><img src="../../images/icon/gymnastics.png" class="sports-icon">微赛事报名</a></li>
+        <li><a id="mystyle" href=""></a></li>
+        <li><a id="mystyle" href="">微赛事管理</a></li>
+        <li><a id="mystyle"href="">微赛事报名</a></li>
         <hr>
-        <li><a href=""><img src="../../images/icon/playground.png" class="sports-icon">比赛规则</a></li>
+        <li><a id="mystyle" href="">记录</a></li>
     </ul>
 </div>
 
@@ -56,7 +56,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">川农运动会后台管理</a>
+                    <a class="navbar-brand">在线系统后台管理</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
