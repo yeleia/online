@@ -1,43 +1,32 @@
 package com.yl.online.entity;
 
 public class Group {
-    private Integer groupid;
+    private Integer id;
 
-    private Integer userid;
+    private String groupname;
 
-    private Integer auth;
-
-    public Group(Integer groupid, Integer userid, Integer auth) {
-        this.groupid = groupid;
-        this.userid = userid;
-        this.auth = auth;
+    public Group(Integer id, String groupname) {
+        this.id = id;
+        this.groupname = groupname;
     }
 
     public Group() {
         super();
     }
 
-    public Integer getGroupid() {
-        return groupid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setGroupid(Integer groupid) {
-        this.groupid = groupid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public String getGroupname() {
+        return groupname;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
-
-    public Integer getAuth() {
-        return auth;
-    }
-
-    public void setAuth(Integer auth) {
-        this.auth = auth;
+    public void setGroupname(String groupname) {
+        this.groupname = groupname == null ? null : groupname.trim();
     }
 }

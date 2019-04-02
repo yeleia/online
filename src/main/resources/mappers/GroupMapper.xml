@@ -3,71 +3,58 @@
 <mapper namespace="com.yl.online.dao.GroupMapper">
   <resultMap id="BaseResultMap" type="com.yl.online.entity.Group">
     <constructor>
-      <idArg column="groupId" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="userId" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="auth" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="groupName" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    groupId, userId, auth
+    id, groupName
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from group_table
-    where groupId = #{groupid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from group_table
-    where groupId = #{groupid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yl.online.entity.Group">
-    insert into group_table (groupId, userId, auth
-      )
-    values (#{groupid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{auth,jdbcType=INTEGER}
-      )
+    insert into group_table (id, groupName)
+    values (#{id,jdbcType=INTEGER}, #{groupname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yl.online.entity.Group">
     insert into group_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="groupid != null">
-        groupId,
+      <if test="id != null">
+        id,
       </if>
-      <if test="userid != null">
-        userId,
-      </if>
-      <if test="auth != null">
-        auth,
+      <if test="groupname != null">
+        groupName,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="groupid != null">
-        #{groupid,jdbcType=INTEGER},
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="auth != null">
-        #{auth,jdbcType=INTEGER},
+      <if test="groupname != null">
+        #{groupname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yl.online.entity.Group">
     update group_table
     <set>
-      <if test="userid != null">
-        userId = #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="auth != null">
-        auth = #{auth,jdbcType=INTEGER},
+      <if test="groupname != null">
+        groupName = #{groupname,jdbcType=VARCHAR},
       </if>
     </set>
-    where groupId = #{groupid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yl.online.entity.Group">
     update group_table
-    set userId = #{userid,jdbcType=INTEGER},
-      auth = #{auth,jdbcType=INTEGER}
-    where groupId = #{groupid,jdbcType=INTEGER}
+    set groupName = #{groupname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

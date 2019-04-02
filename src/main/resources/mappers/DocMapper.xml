@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yl.online.dao.DocMapper">
+  <resultMap id="BaseResultMap" type="com.yl.online.entity.Doc">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="docName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="writeDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="isWrite" javaType="java.lang.Byte" jdbcType="TINYINT" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yl.online.entity.Doc">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="docName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="writeDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="isWrite" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, docName, writeDate, isWrite
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from doc_table
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from doc_table
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yl.online.entity.Doc">
+    insert into doc_table (id, docName, writeDate, 
+      isWrite, content)
+    values (#{id,jdbcType=INTEGER}, #{docname,jdbcType=VARCHAR}, #{writedate,jdbcType=TIMESTAMP}, 
+      #{iswrite,jdbcType=TINYINT}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yl.online.entity.Doc">
+    insert into doc_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="docname != null">
+        docName,
+      </if>
+      <if test="writedate != null">
+        writeDate,
+      </if>
+      <if test="iswrite != null">
+        isWrite,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="docname != null">
+        #{docname,jdbcType=VARCHAR},
+      </if>
+      <if test="writedate != null">
+        #{writedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iswrite != null">
+        #{iswrite,jdbcType=TINYINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yl.online.entity.Doc">
+    update doc_table
+    <set>
+      <if test="docname != null">
+        docName = #{docname,jdbcType=VARCHAR},
+      </if>
+      <if test="writedate != null">
+        writeDate = #{writedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iswrite != null">
+        isWrite = #{iswrite,jdbcType=TINYINT},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yl.online.entity.Doc">
+    update doc_table
+    set docName = #{docname,jdbcType=VARCHAR},
+      writeDate = #{writedate,jdbcType=TIMESTAMP},
+      isWrite = #{iswrite,jdbcType=TINYINT},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yl.online.entity.Doc">
+    update doc_table
+    set docName = #{docname,jdbcType=VARCHAR},
+      writeDate = #{writedate,jdbcType=TIMESTAMP},
+      isWrite = #{iswrite,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

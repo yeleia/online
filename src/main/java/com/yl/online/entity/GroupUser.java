@@ -1,19 +1,19 @@
 package com.yl.online.entity;
 
-public class GroupDoc {
+public class GroupUser {
     private Integer id;
 
     private Integer groupid;
 
-    private Integer documentid;
+    private Integer userid;
 
-    public GroupDoc(Integer id, Integer groupid, Integer documentid) {
+    public GroupUser(Integer id, Integer groupid, Integer userid) {
         this.id = id;
         this.groupid = groupid;
-        this.documentid = documentid;
+        this.userid = userid;
     }
 
-    public GroupDoc() {
+    public GroupUser() {
         super();
     }
 
@@ -33,11 +33,11 @@ public class GroupDoc {
         this.groupid = groupid;
     }
 
-    public Integer getDocumentid() {
-        return documentid;
+    public Integer getUserid() {
+        return userid;
     }
 
-    public void setDocumentid(Integer documentid) {
-        this.documentid = documentid;
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 }

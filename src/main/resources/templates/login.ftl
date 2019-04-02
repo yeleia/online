@@ -27,20 +27,33 @@
         </div>
         <form>
             <li>
-                <input type="text" class="text" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}"><a href="#" class=" icon user"></a>
+                <input type="text" class="text" name="usernumber" value="usernumber" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'usernumber';}"><a href="#" class=" icon user"></a>
             </li>
             <div class="clear"> </div>
             <li>
-                <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"> <a href="#" class="icon lock"></a>
+                <input type="password" value="userpass"  name="userpass" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'userpass';}"> <a href="#" class="icon lock"></a>
             </li>
             <li>
-                    <input type="submit" onclick="myFunction()" value="登陆" >
+                    <input type="submit" onclick="login()" value="登陆" >
             </li>
 
         </form>
     </div>
 </div>
 <div class="clear"> </div>
-
 </body>
+<script>
+    function login() {
+        var usernumber=document.getElementsByName("usernumber").values();
+        var userpass=document.getElementsByName("userpass").values();
+        $.ajax({
+            type:"post",
+            url:,
+            data:{"usernumber":usernumber,"userpass":userpass},
+            success:function (result) {
+                
+            }
+        })
+    }
+</script>
 </html>

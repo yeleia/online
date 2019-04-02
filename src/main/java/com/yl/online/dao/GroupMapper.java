@@ -3,13 +3,13 @@ package com.yl.online.dao;
 import com.yl.online.entity.Group;
 
 public interface GroupMapper {
-    int deleteByPrimaryKey(Integer groupid);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(Group record);
 
     int insertSelective(Group record);
 
-    Group selectByPrimaryKey(Integer groupid);
+    Group selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Group record);
 

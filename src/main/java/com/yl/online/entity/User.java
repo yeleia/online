@@ -1,21 +1,30 @@
 package com.yl.online.entity;
 
 public class User {
-    private Integer userid;
+    private Integer id;
 
     private String username;
 
+    private String usernumber;
+
     private String userpass;
 
-    private Integer usersex;
+    private String sex;
+
+    private String campuse;
+
+    private String profession;
 
     private Integer auth;
 
-    public User(Integer userid, String username, String userpass, Integer usersex, Integer auth) {
-        this.userid = userid;
+    public User(Integer id, String username, String usernumber, String userpass, String sex, String campuse, String profession, Integer auth) {
+        this.id = id;
         this.username = username;
+        this.usernumber = usernumber;
         this.userpass = userpass;
-        this.usersex = usersex;
+        this.sex = sex;
+        this.campuse = campuse;
+        this.profession = profession;
         this.auth = auth;
     }
 
@@ -23,12 +32,12 @@ public class User {
         super();
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -39,6 +48,14 @@ public class User {
         this.username = username == null ? null : username.trim();
     }
 
+    public String getUsernumber() {
+        return usernumber;
+    }
+
+    public void setUsernumber(String usernumber) {
+        this.usernumber = usernumber == null ? null : usernumber.trim();
+    }
+
     public String getUserpass() {
         return userpass;
     }
@@ -47,12 +64,28 @@ public class User {
         this.userpass = userpass == null ? null : userpass.trim();
     }
 
-    public Integer getUsersex() {
-        return usersex;
+    public String getSex() {
+        return sex;
     }
 
-    public void setUsersex(Integer usersex) {
-        this.usersex = usersex;
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
+    }
+
+    public String getCampuse() {
+        return campuse;
+    }
+
+    public void setCampuse(String campuse) {
+        this.campuse = campuse == null ? null : campuse.trim();
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession == null ? null : profession.trim();
     }
 
     public Integer getAuth() {

@@ -3,63 +3,86 @@
 <mapper namespace="com.yl.online.dao.UserMapper">
   <resultMap id="BaseResultMap" type="com.yl.online.entity.User">
     <constructor>
-      <idArg column="userId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="userName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="userNumber" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="userPass" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="userSex" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="sex" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="campuse" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="profession" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="auth" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    userId, userName, userPass, userSex, auth
+    id, userName, userNumber, userPass, sex, campuse, profession, auth
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user_table
-    where userId = #{userid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_table
-    where userId = #{userid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yl.online.entity.User">
-    insert into user_table (userId, userName, userPass, 
-      userSex, auth)
-    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{userpass,jdbcType=VARCHAR}, 
-      #{usersex,jdbcType=INTEGER}, #{auth,jdbcType=INTEGER})
+    insert into user_table (id, userName, userNumber, 
+      userPass, sex, campuse, 
+      profession, auth)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{usernumber,jdbcType=VARCHAR}, 
+      #{userpass,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{campuse,jdbcType=VARCHAR}, 
+      #{profession,jdbcType=VARCHAR}, #{auth,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.yl.online.entity.User">
     insert into user_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        userId,
+      <if test="id != null">
+        id,
       </if>
       <if test="username != null">
         userName,
       </if>
+      <if test="usernumber != null">
+        userNumber,
+      </if>
       <if test="userpass != null">
         userPass,
       </if>
-      <if test="usersex != null">
-        userSex,
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="campuse != null">
+        campuse,
+      </if>
+      <if test="profession != null">
+        profession,
       </if>
       <if test="auth != null">
         auth,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
       </if>
+      <if test="usernumber != null">
+        #{usernumber,jdbcType=VARCHAR},
+      </if>
       <if test="userpass != null">
         #{userpass,jdbcType=VARCHAR},
       </if>
-      <if test="usersex != null">
-        #{usersex,jdbcType=INTEGER},
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="campuse != null">
+        #{campuse,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        #{profession,jdbcType=VARCHAR},
       </if>
       <if test="auth != null">
         #{auth,jdbcType=INTEGER},
@@ -72,24 +95,36 @@
       <if test="username != null">
         userName = #{username,jdbcType=VARCHAR},
       </if>
+      <if test="usernumber != null">
+        userNumber = #{usernumber,jdbcType=VARCHAR},
+      </if>
       <if test="userpass != null">
         userPass = #{userpass,jdbcType=VARCHAR},
       </if>
-      <if test="usersex != null">
-        userSex = #{usersex,jdbcType=INTEGER},
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="campuse != null">
+        campuse = #{campuse,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        profession = #{profession,jdbcType=VARCHAR},
       </if>
       <if test="auth != null">
         auth = #{auth,jdbcType=INTEGER},
       </if>
     </set>
-    where userId = #{userid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yl.online.entity.User">
     update user_table
     set userName = #{username,jdbcType=VARCHAR},
+      userNumber = #{usernumber,jdbcType=VARCHAR},
       userPass = #{userpass,jdbcType=VARCHAR},
-      userSex = #{usersex,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=VARCHAR},
+      campuse = #{campuse,jdbcType=VARCHAR},
+      profession = #{profession,jdbcType=VARCHAR},
       auth = #{auth,jdbcType=INTEGER}
-    where userId = #{userid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
