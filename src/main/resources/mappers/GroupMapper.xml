@@ -4,11 +4,13 @@
   <resultMap id="BaseResultMap" type="com.yl.online.entity.Group">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="creator" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="groupName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="creatTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, groupName
+    id, creator, groupName, creatTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -16,13 +18,18 @@
     from group_table
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getByCreator" resultType="com.yl.online.entity.Group">
+    select * from group_table where creator=#{creator}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from group_table
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yl.online.entity.Group">
-    insert into group_table (id, groupName)
-    values (#{id,jdbcType=INTEGER}, #{groupname,jdbcType=VARCHAR})
+    insert into group_table (id, creator, groupName, 
+      creatTime)
+    values (#{id,jdbcType=INTEGER}, #{creator,jdbcType=INTEGER}, #{groupname,jdbcType=VARCHAR}, 
+      #{creattime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.yl.online.entity.Group">
     insert into group_table
@@ -30,31 +37,51 @@
       <if test="id != null">
         id,
       </if>
+      <if test="creator != null">
+        creator,
+      </if>
       <if test="groupname != null">
         groupName,
+      </if>
+      <if test="creattime != null">
+        creatTime,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
+      <if test="creator != null">
+        #{creator,jdbcType=INTEGER},
+      </if>
       <if test="groupname != null">
         #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null">
+        #{creattime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yl.online.entity.Group">
     update group_table
     <set>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=INTEGER},
+      </if>
       <if test="groupname != null">
         groupName = #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null">
+        creatTime = #{creattime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yl.online.entity.Group">
     update group_table
-    set groupName = #{groupname,jdbcType=VARCHAR}
+    set creator = #{creator,jdbcType=INTEGER},
+      groupName = #{groupname,jdbcType=VARCHAR},
+      creatTime = #{creattime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

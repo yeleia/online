@@ -1,7 +1,9 @@
 package com.yl.online.dao;
 
 import com.yl.online.entity.Version;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface VersionMapper {
     int deleteByPrimaryKey(Integer id);
 

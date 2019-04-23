@@ -22,7 +22,7 @@ public class WebSocketController {
     public String chat1(HttpServletRequest request) {
         // 假设用户tom登录,存储到session中
         request.getSession().setAttribute("WEBSOCKET_USERNAME", "tom");
-        return "chat1";
+        return "chat1.ftl";
     }
     /**
      * 第二个用户登录
@@ -34,7 +34,7 @@ public class WebSocketController {
     public String chat2(HttpServletRequest request) {
         // 假设用户jerry登录,存储到session中
         request.getSession().setAttribute("WEBSOCKET_USERNAME", "jerry");
-        return "chat2";
+        return "chat2.ftl";
     }
 
     /**
@@ -47,6 +47,6 @@ public class WebSocketController {
     public String chat3(HttpServletRequest request) {
         // 假设用户jack登录,存储到session中
         request.getSession().setAttribute("WEBSOCKET_USERNAME", "jack");
-        return "chat3";
+        return "chat3.ftl";
     }
 }

@@ -22,6 +22,17 @@
     from user_table
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getByNP" resultType="com.yl.online.entity.User">
+    select * from user_table where userNumber=#{usernumber} and userpass=#{userpass}
+  </select>
+  <select id="isExsitUser" resultType="java.lang.Integer">
+    select count(1) from user_table where userNumber=#{usernumber}
+  </select>
+  <select id="getUserList" resultType="com.yl.online.entity.User">
+    select * from user_table where auth=#{auth}
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_table
     where id = #{id,jdbcType=INTEGER}
