@@ -1,10 +1,11 @@
 package com.yl.online.controller;
 
 import com.yl.online.entity.Group;
+import com.yl.online.entity.GroupUser;
 import com.yl.online.entity.User;
+import com.yl.online.entity.VO.GroupVO;
 import com.yl.online.service.LoginService;
 import com.yl.online.util.Common;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author yelei
@@ -46,7 +45,7 @@ public class LoginController {
             response.addCookie(cookie);
             request.getSession().setAttribute("user",user);
            // return "redirect:/toIndex?auth="+user.getAuth();
-            return "index";
+            return "docEditor";
 
         }
     }
@@ -62,11 +61,37 @@ public class LoginController {
             model.addObject("user",userList);
             model.setViewName("index");
         }else if (auth.equals(Common.ADMIN_AUTH)){
-            //管理员，返回小组
+            //管理员，返回管理小组和加入小组
             List<Group> groups=loginService.getGroupList(user.getId());
-
-            model.setViewName("index1");
-
+            List<GroupVO> groupVOS=new ArrayList<>();
+            for(Group group:groups){
+                List<GroupUser> groupUsers=loginService.getGroupUser(group.getId());
+                for (GroupUser groupUser:groupUsers){
+                    GroupVO groupVO=new GroupVO();
+                    User userQuery=loginService.getUserById(groupUser.getUserid());
+                    groupVO.setGroupid(group.getId());
+                    groupVO.setAuth(userQuery.getAuth());
+                    groupVO.setCampuse(user.getCampuse());
+                    groupVO.setCreattime(group.getCreattime());
+                    groupVO.setGroupname(group.getGroupname());
+                    groupVO.setProfession(user.getProfession());
+                    groupVO.setSex(user.getSex());
+                    groupVO.setUsername(user.getUsername());
+                    groupVO.setUserid(user.getId());
+                    groupVOS.add(groupVO);
+                }
+            }
+            model.addObject("groupVO",groupVOS);
+            model.setViewName("docEditor");
+        }else {
+            //普通用户，加入的小组
+            List<GroupUser> groupUsers = loginService.getUserGroup(user.getId());
+            List<Group> groups = new ArrayList<>();
+            for (GroupUser groupUser : groupUsers) {
+                Group group = loginService.getGroupById(groupUser.getGroupid());
+                groups.add(group);
+            }
+            model.addObject("group",groups);
         }
         return model;
     }

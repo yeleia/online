@@ -10,7 +10,7 @@ public class User {
     private String userpass;
 
     private String sex;
-
+    //学院
     private String campuse;
 
     private String profession;

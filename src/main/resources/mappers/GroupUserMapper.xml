@@ -17,9 +17,30 @@
     from group_user_table
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="getByGroupId" resultType="com.yl.online.entity.GroupUser">
+      select 
+      <include refid="Base_Column_List"/>
+      from group_user_table
+      where groupId=#{groupid}
+    </select>
+  <select id="getByUserId" resultType="com.yl.online.entity.GroupUser">
+    select
+    <include refid="Base_Column_List"/>
+    from group_user_table
+    where userId=#{userid}
+  </select>
+    <select id="getByGroupIdUserId" resultType="java.lang.Integer">
+      select count(1) from group_user_table where groupId=#{groupid} and userid=#{userid}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from group_user_table
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByGroupId">
+    delete from group_user_table where groupId=#{groupid}
+  </delete>
+  <delete id="deleteGroupUser">
+    delete from group_user_table where id=#{id}
   </delete>
   <insert id="insert" parameterType="com.yl.online.entity.GroupUser">
     insert into group_user_table (id, groupId, userId

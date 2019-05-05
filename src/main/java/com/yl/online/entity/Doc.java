@@ -11,13 +11,16 @@ public class Doc {
 
     private Byte iswrite;
 
+    private String pdfurl;
+
     private String content;
 
-    public Doc(Integer id, String docname, Date writedate, Byte iswrite, String content) {
+    public Doc(Integer id, String docname, Date writedate, Byte iswrite, String pdfurl, String content) {
         this.id = id;
         this.docname = docname;
         this.writedate = writedate;
         this.iswrite = iswrite;
+        this.pdfurl = pdfurl;
         this.content = content;
     }
 
@@ -55,6 +58,14 @@ public class Doc {
 
     public void setIswrite(Byte iswrite) {
         this.iswrite = iswrite;
+    }
+
+    public String getPdfurl() {
+        return pdfurl;
+    }
+
+    public void setPdfurl(String pdfurl) {
+        this.pdfurl = pdfurl == null ? null : pdfurl.trim();
     }
 
     public String getContent() {

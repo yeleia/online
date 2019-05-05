@@ -1,5 +1,8 @@
 package com.yl.online.entity.VO;
 
+import javax.xml.crypto.Data;
+import java.util.Date;
+
 /**
  * @author yelei
  * @date 2019/4/18
@@ -10,6 +13,10 @@ public class GroupVO {
     private Integer userid;
 
     private String groupname;
+
+    private String creator;
+
+    private Date creattime;
 
     private String username;
 
@@ -27,6 +34,22 @@ public class GroupVO {
 
     public Integer getGroupid() {
         return groupid;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public Date getCreattime() {
+        return creattime;
+    }
+
+    public void setCreattime(Date creattime) {
+        this.creattime = creattime;
     }
 
     public void setGroupid(Integer groupid) {

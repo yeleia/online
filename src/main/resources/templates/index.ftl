@@ -66,7 +66,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true"
-                               aria-expanded="false">用户 <span class="caret"></span></a>
+                               aria-expanded="false">叶磊<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="javascript:signOut();">退出登录</a></li>
                             </ul>
@@ -241,12 +241,12 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>测试</td>
+                    <td>20158617</td>
+                    <td>20158617</td>
+                    <td>女</td>
+                    <td>信息工程学院</td>
+                    <td>计算机科学与技术（教育)</td>
                     <td>
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
                                 data-target="#primPersonRe">更新
@@ -259,10 +259,10 @@
             </table>
         </div>
         <!--分页框-->
-        <div class="col-xs-12 col-sm-12 col-md-12">
+       <#-- <div class="col-xs-12 col-sm-12 col-md-12">
             <div class=" pagination" style="display: flex;">
             </div>
-        </div>
+        </div>-->
 
     </div>
     <!--小组管理-->
@@ -587,26 +587,77 @@
         <div style="width: 35%;background: #2b542c;float: right">
             ab
         </div>-->
-        <div style="width: 40%;height: auto;border: #0f0f0f; ">
+        <#--<div style="width: 40%;height: auto;border: #0f0f0f; ">
             <font style="font-size:20px;font-style: normal;color: #777">选择分享的团队或者个人</font>
+        </div>-->
+        <div style="width: 100%;border-bottom:1px solid gray ">
+            <ul class="nav nav-tabs" style="margin-left: 40%">
+                <li class="active"><a href="#">小组文档</a></li>
+                <li><a href="#">个人文档</a></li>
+            </ul>
         </div>
-        <div style="width: 20%;float: left">
-            <div class="radio">
-                <label>
-                    <input type="radio" aria-selected="true"  name="optionsRadios" id="optionsRadios1" value="option1" checked> 团队
-                </label>
-            </div>
-            <div class="radio">
-                <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">个人
-                </label>
-            </div>
-        </div>
-        <!--加载团队和个人-->
-        <div style="width: 60%; float: left;background: #1b6d85">
-            加载团队和个人列表
-        </div>
+        <div style="width: 100%; margin-top: 20px">
+            <button type="button" style="margin-left: 5%" class="btn btn-primary" data-toggle="modal" data-target="#myModal">新增文档</button>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>小组名</th>
+                    <th>文档名</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>test</td>
+                    <td>论文</td>
+                    <td>
+                        <button type="button" class="btn btn-primary">在线编辑
+                        </button>
+                        <button type="button" class="btn btn-info">在线预览
+                        </button>
+                        <button type="button" class="btn btn-success">下载pdf
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                新增文档
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>从本地导入
+                                    <label class="sr-only" for="inputfile">文件输入</label>
+                                    <input type="file" id="inputfile">
+                                </label>
 
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">新建
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                确定
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+        </div>
     </div>
     <!--文档版本-->
     <div style="padding: 5px 20px;" class="items">

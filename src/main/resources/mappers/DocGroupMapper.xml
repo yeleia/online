@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yl.online.dao.DocGroupMapper">
+  <resultMap id="BaseResultMap" type="com.yl.online.entity.DocGroup">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="docId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="groupId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, docId, groupId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from doc_group_table
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from doc_group_table
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yl.online.entity.DocGroup">
+    insert into doc_group_table (id, docId, groupId
+      )
+    values (#{id,jdbcType=INTEGER}, #{docid,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yl.online.entity.DocGroup">
+    insert into doc_group_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="docid != null">
+        docId,
+      </if>
+      <if test="groupid != null">
+        groupId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="docid != null">
+        #{docid,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null">
+        #{groupid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yl.online.entity.DocGroup">
+    update doc_group_table
+    <set>
+      <if test="docid != null">
+        docId = #{docid,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null">
+        groupId = #{groupid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yl.online.entity.DocGroup">
+    update doc_group_table
+    set docId = #{docid,jdbcType=INTEGER},
+      groupId = #{groupid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

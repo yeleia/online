@@ -21,6 +21,16 @@
   <select id="getByCreator" resultType="com.yl.online.entity.Group">
     select * from group_table where creator=#{creator}
   </select>
+    <select id="getById" resultType="com.yl.online.entity.Group">
+      select
+      <include refid="Base_Column_List" />
+      from group_table
+      where id=#{id}
+    </select>
+  <select id="getByGroupIdUserId" resultType="java.lang.Integer">
+    select count(1) from group_user_table where groupId=#{groupid} and userid=#{userid}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from group_table
     where id = #{id,jdbcType=INTEGER}
@@ -84,4 +94,9 @@
       creatTime = #{creattime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <update id="updateGroupNameById">
+      update group_table
+      set groupName=#{groupname}
+      where id=#{id}
+    </update>
 </mapper>

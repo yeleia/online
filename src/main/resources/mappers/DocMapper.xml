@@ -7,6 +7,7 @@
       <arg column="docName" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="writeDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="isWrite" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="pdfUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.yl.online.entity.Doc">
@@ -15,11 +16,12 @@
       <arg column="docName" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="writeDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="isWrite" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="pdfUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, docName, writeDate, isWrite
+    id, docName, writeDate, isWrite, pdfUrl
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -38,9 +40,11 @@
   </delete>
   <insert id="insert" parameterType="com.yl.online.entity.Doc">
     insert into doc_table (id, docName, writeDate, 
-      isWrite, content)
+      isWrite, pdfUrl, content
+      )
     values (#{id,jdbcType=INTEGER}, #{docname,jdbcType=VARCHAR}, #{writedate,jdbcType=TIMESTAMP}, 
-      #{iswrite,jdbcType=TINYINT}, #{content,jdbcType=LONGVARCHAR})
+      #{iswrite,jdbcType=TINYINT}, #{pdfurl,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.yl.online.entity.Doc">
     insert into doc_table
@@ -56,6 +60,9 @@
       </if>
       <if test="iswrite != null">
         isWrite,
+      </if>
+      <if test="pdfurl != null">
+        pdfUrl,
       </if>
       <if test="content != null">
         content,
@@ -74,6 +81,9 @@
       <if test="iswrite != null">
         #{iswrite,jdbcType=TINYINT},
       </if>
+      <if test="pdfurl != null">
+        #{pdfurl,jdbcType=VARCHAR},
+      </if>
       <if test="content != null">
         #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -91,6 +101,9 @@
       <if test="iswrite != null">
         isWrite = #{iswrite,jdbcType=TINYINT},
       </if>
+      <if test="pdfurl != null">
+        pdfUrl = #{pdfurl,jdbcType=VARCHAR},
+      </if>
       <if test="content != null">
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -102,6 +115,7 @@
     set docName = #{docname,jdbcType=VARCHAR},
       writeDate = #{writedate,jdbcType=TIMESTAMP},
       isWrite = #{iswrite,jdbcType=TINYINT},
+      pdfUrl = #{pdfurl,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -109,7 +123,8 @@
     update doc_table
     set docName = #{docname,jdbcType=VARCHAR},
       writeDate = #{writedate,jdbcType=TIMESTAMP},
-      isWrite = #{iswrite,jdbcType=TINYINT}
+      isWrite = #{iswrite,jdbcType=TINYINT},
+      pdfUrl = #{pdfurl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
