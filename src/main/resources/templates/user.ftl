@@ -43,9 +43,9 @@
         <hr style="height: 2px;box-shadow: 1px 1px 5px #888888;background-color: #032A33; width: 90%">
     </div>
     <ul class="left-list">
-        <li class="left-active"><a id="mystyle" href="">管理员管理</a></li>
+        <li><a id="mystyle" href="/getAdminList">管理员管理</a></li>
         <li><a id="mystyle" href="/getGroupByUserId?id=${(user.id)!}">小组管理</a></li>
-        <li><a id="mystyle" href="/getUser">用户管理</a></li>
+        <li class="left-active"><a id="mystyle" href="/getUser">用户管理</a></li>
         <li><a id="mystyle" href="/getOwnMessage?id=${(user.id)!}">个人信息管理</a></li>
         <li><a id="mystyle" href="javascript:void(0);">文档管理</a></li>
         <li><a id="mystyle" href="javascript:void(0);">文档版本</a></li>
@@ -84,7 +84,7 @@
             </div>
         </nav>
     </div>
-    <!--管理员管理-->
+    <!--用户管理-->
     <div style="padding: 5px 20px;" class="items show">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <!-- 触发模态框 -->
@@ -202,7 +202,7 @@
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
                                 data-target="#primPersonRe">更新
                         </button>
-                        <button type="button" onclick="deleteAd(${user.id})" class="btn btn-danger btn-xs delete">删除
+                        <button type="button" onclick="deleteUser(${user.id})" class="btn btn-danger btn-xs delete">删除
                         </button>
                     </td>
                 </tr>
@@ -216,7 +216,7 @@
                                           &times;
                                       </button>
                                       <h4 class="modal-title">
-                                          管理员信息更新
+                                          用户信息更新
                                       </h4>
                                   </div>
                                   <div class="modal-body">
@@ -266,7 +266,7 @@
                                       </form>
                                   </div>
                                   <div class="modal-footer">
-                                      <button type="button" onclick="updateSave(${user.id})" class="btn btn-primary">
+                                      <button type="button" onclick="updateSaveUser(${user.id})" class="btn btn-primary">
                                           保存更新
                                       </button>
                                       <button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -305,7 +305,7 @@
             $.ajax({
                 type:"post",
                 dataType:'json',
-                url:"/addAdmin",
+                url:"/addUser",
                 data:{"usernumber":usernumber,"userpass":userpass,"username":username,"sex":sex,"campuse":campuse,"profession":profession},
                 success:function (result) {
                     alert("添加成功")
@@ -315,12 +315,13 @@
                             '                        <button type="button" class="btn btn-danger btn-xs delete">删除\n' +
                             '                        </button></td></tr>';
                     $("#tbody").append(html);
+                    //
+                    //$(".form-horizontal").style.display='none';
                     $('#primPerson').modal('hide');
-
                 }
             })
         }
-        function updateSave(id) {
+        function updateSaveUser(id) {
             alert("ad")
             var username=$("#username").val();
             var usernumber=$("#usernumber").val();
@@ -331,7 +332,7 @@
             $.ajax({
                 type:"post",
                 dataType:'json',
-                url:"/updateAdmin",
+                url:"/updateUser",
                 data:{"id":id,"usernumber":usernumber,"userpass":userpass,"username":username,"sex":sex,"campuse":campuse,"profession":profession},
                 success:function (result) {
                     alert("修改成功")
@@ -350,11 +351,11 @@
                 }
             })
         }
-        function deleteAd(id) {
+        function deleteUser(id) {
             $.ajax({
                 type:"post",
                 dataType:'json',
-                url:"/deleteAdmin",
+                url:"/deleteUser",
                 data:{"id":id},
                 success:function (result) {
                     alert("删除成功")
@@ -368,7 +369,6 @@
                                 '                        </button></td></tr>';
                     }
                     $("#tbody").append(html);
-
                 }
             })
         }

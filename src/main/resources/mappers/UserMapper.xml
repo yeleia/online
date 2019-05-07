@@ -31,6 +31,9 @@
   <select id="getUserList" resultType="com.yl.online.entity.User">
     select * from user_table where auth=#{auth}
   </select>
+  <select id="getAllUser" resultType="com.yl.online.entity.User">
+    select * from user_table
+  </select>
 
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

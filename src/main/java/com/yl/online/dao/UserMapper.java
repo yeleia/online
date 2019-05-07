@@ -26,4 +26,6 @@ public interface UserMapper {
 
     List<User> getUserList(@Param("auth")Integer auth);
 
+    List<User> getAllUser();
+
 }

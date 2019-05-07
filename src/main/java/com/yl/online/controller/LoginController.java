@@ -4,8 +4,10 @@ import com.yl.online.entity.Group;
 import com.yl.online.entity.GroupUser;
 import com.yl.online.entity.User;
 import com.yl.online.entity.VO.GroupVO;
+import com.yl.online.service.AdminService;
 import com.yl.online.service.LoginService;
 import com.yl.online.util.Common;
+import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +30,8 @@ import java.util.List;
 public class LoginController {
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private AdminService adminService;
     @RequestMapping("/loginPage")
     public String loginPage(){
         return "signIn";
@@ -43,13 +48,13 @@ public class LoginController {
             cookie.setPath("/");
             cookie.setMaxAge(30*24*60*60*1000);
             response.addCookie(cookie);
-            request.getSession().setAttribute("user",user);
-           // return "redirect:/toIndex?auth="+user.getAuth();
-            return "docEditor";
-
+            HttpSession session=request.getSession();
+            session.setAttribute("user",user);
+            session.setMaxInactiveInterval(30*60);
+            return "redirect:/toIndex?auth="+user.getAuth();
         }
     }
-    @RequestMapping(value = "/toIndex/{auth}",method = RequestMethod.GET)
+    @RequestMapping(value = "/toIndex")
     public ModelAndView index(@RequestParam("auth")Integer auth, ModelAndView model,HttpServletRequest request){
         Cookie[] cookie=request.getCookies();
         model.addObject("username",cookie[0].getValue());
@@ -57,42 +62,19 @@ public class LoginController {
         if(auth.equals(Common.SUPERADMIN_AUTH)){
             List<User> userList;
             //超级管理员，查询管理员，返回index
-            userList=loginService.getUserList(auth);
-            model.addObject("user",userList);
+            userList=loginService.getUserList(Common.ADMIN_AUTH);
+            model.addObject("users",userList);
             model.setViewName("index");
         }else if (auth.equals(Common.ADMIN_AUTH)){
             //管理员，返回管理小组和加入小组
-            List<Group> groups=loginService.getGroupList(user.getId());
-            List<GroupVO> groupVOS=new ArrayList<>();
-            for(Group group:groups){
-                List<GroupUser> groupUsers=loginService.getGroupUser(group.getId());
-                for (GroupUser groupUser:groupUsers){
-                    GroupVO groupVO=new GroupVO();
-                    User userQuery=loginService.getUserById(groupUser.getUserid());
-                    groupVO.setGroupid(group.getId());
-                    groupVO.setAuth(userQuery.getAuth());
-                    groupVO.setCampuse(user.getCampuse());
-                    groupVO.setCreattime(group.getCreattime());
-                    groupVO.setGroupname(group.getGroupname());
-                    groupVO.setProfession(user.getProfession());
-                    groupVO.setSex(user.getSex());
-                    groupVO.setUsername(user.getUsername());
-                    groupVO.setUserid(user.getId());
-                    groupVOS.add(groupVO);
-                }
-            }
-            model.addObject("groupVO",groupVOS);
-            model.setViewName("docEditor");
-        }else {
-            //普通用户，加入的小组
-            List<GroupUser> groupUsers = loginService.getUserGroup(user.getId());
-            List<Group> groups = new ArrayList<>();
-            for (GroupUser groupUser : groupUsers) {
-                Group group = loginService.getGroupById(groupUser.getGroupid());
-                groups.add(group);
-            }
+            List<Group> groups=adminService.getGroupByCreator(user.getId());
             model.addObject("group",groups);
+            model.setViewName("index11");
+        }else {
+            //普通用户，个人信息
+            model.setViewName("own");
         }
+        model.addObject("user",user);
         return model;
     }
 

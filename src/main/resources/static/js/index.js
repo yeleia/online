@@ -1,7 +1,7 @@
 /**
  *Tab切换
  * */
-$(".left-list li").click(function () {
+/*$(".left-list li").click(function () {
     if (!$(this).hasClass("left-active")) {
         $(this).addClass("left-active");
     }
@@ -12,14 +12,14 @@ $(".left-list li").click(function () {
         $(".items").eq($index).addClass("show");
     }
     $(".items").eq($index).siblings().removeClass("show");
-});
+});*/
 
 /**
  * 删除的提示框
  * */
-$(".delete").click(function () {
+/*$(".delete").click(function () {
     systemConfirm("确认删除该记录?");
-})
+})*/
 
 /**
  * 分页效果

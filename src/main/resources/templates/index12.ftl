@@ -36,7 +36,7 @@
         <hr style="height: 2px;box-shadow: 1px 1px 5px #888888;background-color: #032A33; width: 90%">
     </div>
     <ul class="left-list">
-        <li class="left-active"><a id="mystyle" href="javascript:void(0);">用户管理</a></li>
+        <li><a id="mystyle" href="/getOwnMessage?id=${(user.id)!}">个人信息管理</a></li></li>
         <li><a id="mystyle" href="javascript:void(0);">文档管理</a></li>
         <li><a id="mystyle" href="javascript:void(0);">文档版本</a></li>
     </ul>
@@ -64,7 +64,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true"
-                               aria-expanded="false">用户1<span class="caret"></span></a>
+                               aria-expanded="false">${(user.username)!}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="javascript:signOut();">退出登录</a></li>
                             </ul>

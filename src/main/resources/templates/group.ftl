@@ -25,6 +25,13 @@
         td{
             text-align: center;
         }
+        .table{
+            position: relative;
+        }
+        #ret{
+            position: absolute;
+            bottom:0;
+        }
     </style>
 </head>
 
@@ -36,6 +43,7 @@
         <hr style="height: 2px;box-shadow: 1px 1px 5px #888888;background-color: #032A33; width: 90%">
     </div>
     <ul class="left-list">
+        <li><a id="mystyle" href="/getAdminList">管理员管理</a></li>
         <li class="left-active"><a id="mystyle" href="/getGroupByUserId?id=${(user.id)!}">小组管理</a></li>
         <li><a id="mystyle" href="/getUser">用户管理</a></li>
         <li><a id="mystyle" href="/getOwnMessage?id=${(user.id)!}">个人信息管理</a></li>
@@ -130,12 +138,12 @@
                  <#if group??&&(group?size>0)>
                      <#list group as group>
                         <tr>
-                            <td>${group.groupname}</td>
-                            <td>
-                                <a href="/toAddGroup?id=${(group.id)!}"><button type="button" class="btn btn-primary btn-xs"
-                                                                                data-target="#primPersonRe">管理小组</button></a>
-                                <button type="button" class="btn btn-danger btn-xs delete">删除</button>
-                            </td>
+                          <td>${group.groupname}</td>
+                          <td>
+                                  <a href="/toAddGroup?id=${(group.id)!}"><button type="button" class="btn btn-primary btn-xs"
+                                      data-target="#primPersonRe">管理小组</button></a>
+                              <button type="button" class="btn btn-danger btn-xs delete">删除</button>
+                          </td>
                         </tr>
                      </#list>
                  </#if>
@@ -143,35 +151,35 @@
             </table>
         </div>
     </div>
-</div>
-<script>
-    function addGroup(id) {
-        var groupname=$("#groupname").val();
-        $.ajax({
-            type:"post",
-            dataType:'json',
-            url:"/addGroup",
-            data:{"groupname":groupname,"creator":id},
-            success:function (result) {
-                alert("添加成功")
-                var html='<tr><td>'+groupname+'</td><td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal"\n' +
-                        '                                data-target="#primPersonRe">管理小组\n' +
-                        '                        </button>\n' +
-                        '                        <button type="button" class="btn btn-danger btn-xs delete">删除\n' +
-                        '                        </button></td></tr>';
-                $("#tbody").append(html);
-                $('#primPerson').modal('hide');
+    </div>
+    <script>
+        function addGroup(id) {
+            var groupname=$("#groupname").val();
+            $.ajax({
+                type:"post",
+                dataType:'json',
+                url:"/addGroup",
+                data:{"groupname":groupname,"creator":id},
+                success:function (result) {
+                    alert("添加成功")
+                    var html='<tr><td>'+groupname+'</td><td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal"\n' +
+                            '                                data-target="#primPersonRe">管理小组\n' +
+                            '                        </button>\n' +
+                            '                        <button type="button" class="btn btn-danger btn-xs delete">删除\n' +
+                            '                        </button></td></tr>';
+                    $("#tbody").append(html);
+                    $('#primPerson').modal('hide');
 
-            }
-        })
-    }
-</script>
-<script src="${request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
-<script src="${request.contextPath}/static/js/jquery-confirm.min.js"></script>
-<script src="${request.contextPath}/static/paging/js/jquery.pagination.min.js"></script>
-<script src="${request.contextPath}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="${request.contextPath}/static/js/global.js"></script>
-<script src="${request.contextPath}/static/js/index.js"></script>
+                }
+            })
+        }
+    </script>
+    <script src="${request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
+    <script src="${request.contextPath}/static/js/jquery-confirm.min.js"></script>
+    <script src="${request.contextPath}/static/paging/js/jquery.pagination.min.js"></script>
+    <script src="${request.contextPath}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="${request.contextPath}/static/js/global.js"></script>
+    <script src="${request.contextPath}/static/js/index.js"></script>
 
 </body>
 
