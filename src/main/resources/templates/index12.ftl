@@ -37,7 +37,7 @@
     </div>
     <ul class="left-list">
         <li><a id="mystyle" href="/getOwnMessage?id=${(user.id)!}">个人信息管理</a></li></li>
-        <li><a id="mystyle" href="javascript:void(0);">文档管理</a></li>
+        <li><a id="mystyle" href="/getAllDoc?id=${(user.id)!}">文档管理</a></li>
         <li><a id="mystyle" href="javascript:void(0);">文档版本</a></li>
     </ul>
 </div>

@@ -9,13 +9,13 @@ public class Doc {
 
     private Date writedate;
 
-    private Byte iswrite;
+    private Integer iswrite;
 
     private String pdfurl;
 
     private String content;
 
-    public Doc(Integer id, String docname, Date writedate, Byte iswrite, String pdfurl, String content) {
+    public Doc(Integer id, String docname, Date writedate, Integer iswrite, String pdfurl, String content) {
         this.id = id;
         this.docname = docname;
         this.writedate = writedate;
@@ -52,11 +52,11 @@ public class Doc {
         this.writedate = writedate;
     }
 
-    public Byte getIswrite() {
+    public Integer getIswrite() {
         return iswrite;
     }
 
-    public void setIswrite(Byte iswrite) {
+    public void setIswrite(Integer iswrite) {
         this.iswrite = iswrite;
     }
 
@@ -74,5 +74,16 @@ public class Doc {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Doc{" +
+                "id=" + id +
+                ", docname='" + docname + '\'' +
+                ", writedate=" + writedate +
+                ", iswrite=" + iswrite +
+                ", pdfurl='" + pdfurl + '\'' +
+                '}';
     }
 }

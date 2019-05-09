@@ -47,7 +47,7 @@
         <li><a id="mystyle" href="/getGroupByUserId?id=${(user.id)!}">小组管理</a></li>
         <li class="left-active"><a id="mystyle" href="/getUser">用户管理</a></li>
         <li><a id="mystyle" href="/getOwnMessage?id=${(user.id)!}">个人信息管理</a></li>
-        <li><a id="mystyle" href="javascript:void(0);">文档管理</a></li>
+        <li><a id="mystyle" href="/getAllDoc?id=${(user.id)!}">文档管理</a></li>
         <li><a id="mystyle" href="javascript:void(0);">文档版本</a></li>
     </ul>
 </div>
@@ -283,12 +283,6 @@
                 </tbody>
             </table>
         </div>
-        <!--分页框-->
-       <#-- <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class=" pagination" style="display: flex;">
-            </div>
-        </div>-->
-
     </div>
 
 

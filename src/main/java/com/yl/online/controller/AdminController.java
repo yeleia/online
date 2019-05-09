@@ -67,11 +67,15 @@ public class AdminController {
     @RequestMapping("/getGroupByUserId")
     public ModelAndView getGroupByUserId(@RequestParam("id") Integer id, ModelAndView modelAndView, HttpServletRequest request) {
         //List<GroupV> groupVS = adminService.getGroupV(id);
-        List<Group> groups=adminService.getGroupByCreator(id);
-        User user = (User) request.getSession().getAttribute("user");
-        modelAndView.addObject("user", user);
-        modelAndView.addObject("group",groups);
-        modelAndView.setViewName("group");
+        if (id==null){
+            modelAndView.setViewName("signIn");
+        }else {
+            List<Group> groups = adminService.getGroupByCreator(id);
+            User user = (User) request.getSession().getAttribute("user");
+            modelAndView.addObject("user", user);
+            modelAndView.addObject("group", groups);
+            modelAndView.setViewName("group");
+        }
         return modelAndView;
     }
 

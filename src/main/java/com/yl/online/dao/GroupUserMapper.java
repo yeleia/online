@@ -29,4 +29,6 @@ public interface GroupUserMapper {
     Integer deleteByGroupId(@Param("groupid")Integer groupid);
 
     Integer deleteGroupUser(@Param("id") Integer id);
+
+    List<Integer> getByUser(@Param("userid") Integer userid);
 }

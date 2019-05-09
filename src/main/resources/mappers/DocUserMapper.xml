@@ -17,6 +17,9 @@
     from doc_user_table
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getDocId" resultType="java.lang.Integer">
+    select docId from doc_user_table where userId=#{userid}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from doc_user_table
     where id = #{id,jdbcType=INTEGER}

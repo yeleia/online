@@ -1,7 +1,11 @@
 package com.yl.online.dao;
 
 import com.yl.online.entity.DocGroup;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+@Mapper
 public interface DocGroupMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +18,6 @@ public interface DocGroupMapper {
     int updateByPrimaryKeySelective(DocGroup record);
 
     int updateByPrimaryKey(DocGroup record);
+
+    List<Integer> getDocId(@Param("groupid") Integer groupid);
 }

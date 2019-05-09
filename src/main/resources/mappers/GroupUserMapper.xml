@@ -32,7 +32,10 @@
     <select id="getByGroupIdUserId" resultType="java.lang.Integer">
       select count(1) from group_user_table where groupId=#{groupid} and userid=#{userid}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <select id="getByUser" resultType="java.lang.Integer">
+    select groupId from group_user_table where userId=#{userid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from group_user_table
     where id = #{id,jdbcType=INTEGER}
   </delete>

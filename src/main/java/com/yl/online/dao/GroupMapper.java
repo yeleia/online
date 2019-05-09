@@ -26,5 +26,7 @@ public interface GroupMapper {
 
     Integer updateGroupNameById(@Param("id") Integer id, @Param("groupname") String groupname);
 
-    Integer getByGroupIdUserId(@Param("groupid") Integer groupid, @Param("userid") Integer userid);
+    Integer getByGroupIdUserId(@Param("id") Integer id, @Param("creator") Integer creator);
+
+    List<Group> getGroupId(@Param("creator") Integer creator);
 }

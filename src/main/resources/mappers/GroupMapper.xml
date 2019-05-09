@@ -28,10 +28,13 @@
       where id=#{id}
     </select>
   <select id="getByGroupIdUserId" resultType="java.lang.Integer">
-    select count(1) from group_user_table where groupId=#{groupid} and userid=#{userid}
+    select count(1) from group_table where id=#{id} and creator=#{creator}
   </select>
+    <select id="getGroupId" resultType="com.yl.online.entity.Group">
+      select * from group_table where creator=#{creator}
+    </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from group_table
     where id = #{id,jdbcType=INTEGER}
   </delete>

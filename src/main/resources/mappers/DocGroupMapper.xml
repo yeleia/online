@@ -17,6 +17,9 @@
     from doc_group_table
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getDocId" resultType="java.lang.Integer">
+    select docId from doc_group_table where groupId =#{groupid}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from doc_group_table
     where id = #{id,jdbcType=INTEGER}

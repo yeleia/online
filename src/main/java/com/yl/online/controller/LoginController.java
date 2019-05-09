@@ -39,6 +39,7 @@ public class LoginController {
     @RequestMapping("/login")
     public String login(@RequestParam("usernumber")String usernumber, @RequestParam("userpass")String userpass,
                          Model model,HttpServletResponse response, HttpServletRequest request){
+        System.out.println("login");
         User user=loginService.login(usernumber,userpass);
         if (user==null){
             model.addAttribute("message","用户不存在或者密码错误");

@@ -128,7 +128,7 @@
         auth = #{auth,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id= #{id}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yl.online.entity.User">
     update user_table
@@ -137,8 +137,7 @@
       userPass = #{userpass,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       campuse = #{campuse,jdbcType=VARCHAR},
-      profession = #{profession,jdbcType=VARCHAR},
-      auth = #{auth,jdbcType=INTEGER}
+      profession = #{profession,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

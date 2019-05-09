@@ -6,7 +6,7 @@
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="docName" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="writeDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="isWrite" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="isWrite" javaType="java.lang.Integer" jdbcType="TINYINT" />
       <arg column="pdfUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
@@ -15,7 +15,7 @@
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="docName" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="writeDate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="isWrite" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="isWrite" javaType="java.lang.Integer" jdbcType="TINYINT" />
       <arg column="pdfUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
     </constructor>
@@ -27,13 +27,17 @@
     content
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from doc_table
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getTopOne" resultType="java.lang.Integer">
+    select id from doc_table order by id desc limit 0,1
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from doc_table
     where id = #{id,jdbcType=INTEGER}
@@ -43,10 +47,10 @@
       isWrite, pdfUrl, content
       )
     values (#{id,jdbcType=INTEGER}, #{docname,jdbcType=VARCHAR}, #{writedate,jdbcType=TIMESTAMP}, 
-      #{iswrite,jdbcType=TINYINT}, #{pdfurl,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      #{iswrite,jdbcType=INTEGER}, #{pdfurl,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.yl.online.entity.Doc">
+  <insert id="insertSelective" parameterType="com.yl.online.entity.Doc" useGeneratedKeys="true" keyProperty="id">
     insert into doc_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -79,7 +83,7 @@
         #{writedate,jdbcType=TIMESTAMP},
       </if>
       <if test="iswrite != null">
-        #{iswrite,jdbcType=TINYINT},
+        #{iswrite,jdbcType=INTEGER},
       </if>
       <if test="pdfurl != null">
         #{pdfurl,jdbcType=VARCHAR},
@@ -99,7 +103,7 @@
         writeDate = #{writedate,jdbcType=TIMESTAMP},
       </if>
       <if test="iswrite != null">
-        isWrite = #{iswrite,jdbcType=TINYINT},
+        isWrite = #{iswrite,jdbcType=INTEGER},
       </if>
       <if test="pdfurl != null">
         pdfUrl = #{pdfurl,jdbcType=VARCHAR},
@@ -114,7 +118,7 @@
     update doc_table
     set docName = #{docname,jdbcType=VARCHAR},
       writeDate = #{writedate,jdbcType=TIMESTAMP},
-      isWrite = #{iswrite,jdbcType=TINYINT},
+      isWrite = #{iswrite,jdbcType=INTEGER},
       pdfUrl = #{pdfurl,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
@@ -123,7 +127,7 @@
     update doc_table
     set docName = #{docname,jdbcType=VARCHAR},
       writeDate = #{writedate,jdbcType=TIMESTAMP},
-      isWrite = #{iswrite,jdbcType=TINYINT},
+      isWrite = #{iswrite,jdbcType=INTEGER},
       pdfUrl = #{pdfurl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -223,7 +223,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Map<String, Object> saveOwn(User user) {
 
-        if (userMapper.updateByPrimaryKeySelective(user)>0){
+        if (userMapper.updateByPrimaryKey(user)>0){
             return RetrunUtil.ret(true,"修改成功");
         }else {
             return RetrunUtil.ret(false,"修改失败");

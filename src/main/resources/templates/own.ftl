@@ -47,7 +47,7 @@
         <li><a id="mystyle" href="/getGroupByUserId?id=${(user.id)!}">小组管理</a></li>
         <li><a id="mystyle" href="/getUser">用户管理</a></li>
         <li class="left-active"><a id="mystyle" href="/getOwnMessage?id=${(user.id)!}">个人信息管理</a></li></li>
-        <li><a id="mystyle" href="javascript:void(0);">文档管理</a></li>
+        <li><a id="mystyle" href="/getAllDoc?id=${(user.id)!}">文档管理</a></li>
         <li><a id="mystyle" href="javascript:void(0);">文档版本</a></li>
     </ul>
 </div>
@@ -92,21 +92,21 @@
                     <label for="firstname" class="col-sm-2 control-label">名字</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="username"
-                               value="${user.username}">
+                               value="${(user.username)!}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="lastname" class="col-sm-2 control-label">学号</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="usernumber"
-                               value="${user.usernumber}" disabled="true">
+                               value="${(user.usernumber)!}" disabled="true">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="firstname" class="col-sm-2 control-label">密码</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="userpass"
-                               value="${user.userpass}">
+                               value="${(user.userpass)!}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -145,17 +145,18 @@
 </div>
     <script>
         function saveOwn() {
-            var username=$("#stuname").val();
-            var userpass=$("#stupass").val();
-            var sex=$("#stusex").val();
-            var campuse=$("#stucampuse").val();
-            var profession=$("#stuprefession").val();
+            var username=$("#username").val();
+            var usernumber=$("#usernumber").val();
+            var userpass=$("#userpass").val();
+            var sex=$("#sex").val();
+            var campuse=$("#campuse").val();
+            var profession=$("#profession").val();
             var id=$("#userId").val();
             $.ajax({
                 type:"post",
                 dataType:'json',
                 url:"/saveOwn",
-                data:{"id":id,"userpass":userpass,"username":username,"sex":sex,"campuse":campuse,"profession":profession},
+                data:{"id":id,"userpass":userpass,"usernumber":usernumber,"username":username,"sex":sex,"campuse":campuse,"profession":profession},
                 success:function (result) {
                     alert("修改成功")
                     window.location.href="/getOwnMessage?id="+id;
