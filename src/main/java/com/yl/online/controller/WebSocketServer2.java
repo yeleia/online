@@ -24,9 +24,10 @@ public class WebSocketServer2 {
     private static final Set<WebSocketServer2> WEB_SOCKET_SERVER_2_SET = new CopyOnWriteArraySet<WebSocketServer2>();
     @OnMessage
     public void onMessage(String message, @PathParam(value = "nickname") String nickname) throws IOException {
-        sendText(nickname+" : "+message);
+        sendText(nickname+" :"+message);
     }
     private static void sendText(String msg) {
+        System.out.println(msg);
         for (WebSocketServer2 webSocketServer2 : WEB_SOCKET_SERVER_2_SET) {
             try {
                 synchronized (webSocketServer2) {
@@ -44,7 +45,6 @@ public class WebSocketServer2 {
     }
     @OnOpen
     public void onOpen(Session session, @PathParam(value = "nickname") String nickname) throws IOException {
-        System.out.println(nickname+"ws");
         this.nickname = nickname;
         this.session = session;
         WEB_SOCKET_SERVER_2_SET.add(this);

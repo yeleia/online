@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="${request.contextPath}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${request.contextPath}/static/paging/css/jquery.pagination.css">
     <link rel="stylesheet" href="${request.contextPath}/static/css/jquery-confirm.min.css">
-    <script type="text/javascript" src="${request.contextPath}/static/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" src="${request.contextPath}/static/ueditor/ueditor.all.js"></script>
     <script src="${request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
     <script src="${request.contextPath}/static/js/jquery-confirm.min.js"></script>
     <script src="${request.contextPath}/static/paging/js/jquery.pagination.min.js"></script>
@@ -59,11 +57,14 @@
             文档名：<input type="text" value="${(doc.docname)!}">
         </div>
         <!-- 加载编辑器的容器 -->
-        <textarea id="container"  name="content" type="text/plain">
+        <textarea id="container"  name="content" type="text/plain" onfocus="setInterval('sendDoc()',2000)">
                 ${(doc.content)!}
         </textarea>
+       <#-- <div style="position:relative">
+            <button onclick="sendDoc()" style="position:absolute;left:70%">保存</button>
+        </div>-->
         <div style="position:relative">
-            <button onclick="sendDoc()" style="position:absolute;left:90%">保存</button>
+            <button onclick="sub()" style="position:absolute;left:90%">提交</button>
         </div>
     </div>
     <div class="right">
@@ -82,6 +83,19 @@
     </div>
 </div>
 <script>
+    var ue;
+    window.onload=function () {
+        setTimeout(setContent,200);
+    }
+    $(document).ready(function () {
+        window.setInterval(sendDoc,5000)
+    })
+    function setContent() {
+        var content=window.sessionStorage.getItem("content");
+        if (content!=null){
+            UE.getEditor('container').setContent(content,false);
+        }
+    }
     var webSocket;
     function btnClick2() {
         var msg = $("#msg").val();
@@ -89,34 +103,39 @@
         webSocket.send(msg)
     };
     function sendDoc(){
-        var msg=$("#container").val();
-        webSocket.send(msg);
+        if (UE.getEditor('container').isFocus()) {
+            var content=UE.getEditor('container').getContent();
+            window.sessionStorage.setItem("content",content);
+            var msg=content;
+            webSocket.send("doc"+msg);
+        }
     }
     $("#btnClick1").click(function () {
         var nickname = $("#nickname").val();
-       /* if(nickname==null||nickname=='') {
-            alert("必须输入昵称");
-            return;
-        }*/
        /* $(this).attr("disabled", "disabled");*/
         webSocket = new WebSocket("ws://localhost:8080/myws2/"+nickname);
-
         webSocket.onopen = function (event) {
-            /*$("#resultDiv").append("<p>连接成功！</p>");*/
         }
         webSocket.onerror = function (event) {
             $("#resultDiv").append("<p>onerrors:" + event.data + "</p>");
         }
         webSocket.onmessage = function (event) {
-            $("#resultDiv").append("<p>" + event.data + "</p>");
+            var text=event.data;
+            var n=text.indexOf(":");
+            if (text.substr(n+1,3)=="doc"){
+                UE.getEditor('container').setContent(text.slice(n+4),false);
+            }else {
+                $("#resultDiv").append("<p>" + text + "</p>");
+            }
+
         }
     });
 </script>
+<script type="text/javascript" src="${request.contextPath}/static/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="${request.contextPath}/static/ueditor/ueditor.all.js"></script>
 <!-- 实例化编辑器 -->
 <script type="text/javascript" style="width:100%;height:300px;">
-    var ue = UE.getEditor('container').setHeight(300);
+    ue = UE.getEditor('container').setHeight(300)
 </script>
-
-
 </body>
 </html>

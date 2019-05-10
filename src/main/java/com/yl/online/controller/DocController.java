@@ -51,7 +51,6 @@ public class DocController {
                 for (int i = 0; i <group.size() ; i++) {
                     List<Integer> docId= docService.getDocId(group.get(i).getId());
                     for (int j = 0; j <docId.size() ; j++) {
-                        System.out.println(docId.get(j));
                         Doc doc = docService.getDocById(docId.get(j));
                         GroupDocVo groupDocVo = new GroupDocVo();
                         if (doc != null) {
@@ -87,7 +86,6 @@ public class DocController {
             List<Integer> docIds=docService.getDocIdByUserId(id);
             List<Doc> docList=new ArrayList<>();
             for (int i = 0; i < docIds.size(); i++) {
-                System.out.println(docIds.get(i));
                 docList.add(docService.getDocById(docIds.get(i)));
             }
             modelAndView.addObject("group",docService.getGroupId(id));
@@ -145,7 +143,6 @@ public class DocController {
         return modelAndView;
     }
     public static String readWord(String path) {
-        System.out.println(path);
         String buffer = "";
         try {
             if (path.endsWith(".doc")) {
